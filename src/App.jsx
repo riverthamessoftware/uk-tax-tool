@@ -97,10 +97,9 @@ const TaxComparisonTool = () => {
 
   const calcCorporationTax = (profit) => {
     if (profit <= 50000) return profit * 0.19;
-    if (profit >= 250000) return profit * 0.25;
-    // Marginal relief between 50k and 250k
-    const marginalRate = 0.25 - (250000 - profit) * 0.015 / 200000;
-    return profit * marginalRate;
+    if (profit > 250000) return profit * 0.25;
+    // Marginal relief calculation for profits between £50,000 and £250,000
+    return (50000 * 0.19) + ((profit - 50000) * 0.265);
   };
 
   const calcDividendTax = (dividends, otherIncome) => {
